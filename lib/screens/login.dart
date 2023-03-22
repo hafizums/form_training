@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/login.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,6 +17,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    LoginProvider loginProvider =
+        Provider.of<LoginProvider>(context, listen: true);
     return Scaffold(
         appBar: AppBar(
           title: const Text("Login Screen"),
@@ -52,7 +57,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                      } else {
+                        loginProvider.logUserIn(Login(
+                            username: usernameController.text,
+                            password: passwordController.text));
+                      }
                     },
                     child: const Text("Login"))
               ],

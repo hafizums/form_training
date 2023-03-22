@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/provider/counter.dart';
+import 'package:hello_world/provider/login.dart';
 import 'package:hello_world/screens/counter.dart';
-import 'package:hello_world/screens/home_screen.dart';
 import 'package:hello_world/screens/login.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => Counter(),
-    child: const MyApp(),
-  ));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => Counter(),
+    ),
+    ChangeNotifierProvider(
+      create: (context) => LoginProvider(),
+    )
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
