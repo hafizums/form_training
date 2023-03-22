@@ -9,6 +9,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextFormField(
+                    controller: usernameController,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "This field is required";
@@ -34,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     decoration: const InputDecoration(labelText: "Username")),
                 TextFormField(
+                  controller: passwordController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "This field is required";
