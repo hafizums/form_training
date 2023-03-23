@@ -14,6 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,18 @@ class _LoginScreenState extends State<LoginScreen> {
                             password: passwordController.text));
                       }
                     },
-                    child: const Text("Login"))
+                    child: const Text("Login")),
+                CheckboxListTile(
+                  title: const Text("Remember me"),
+                  value: rememberMe,
+                  onChanged: (newValue) {
+                    setState(() {
+                      rememberMe = newValue!;
+                    });
+                  },
+                  controlAffinity:
+                      ListTileControlAffinity.leading, //  <-- leading Checkbox
+                )
               ],
             ),
           ),
